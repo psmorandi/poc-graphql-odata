@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using HotChocolate.Types;
     using HotChocolate.Types.Relay;
+    using Product.Data.Repositories;
     using Product.Domain;
-    using Repositories;
 
     [ExtendObjectType(Name = "Query")]
     public class ProductQueries

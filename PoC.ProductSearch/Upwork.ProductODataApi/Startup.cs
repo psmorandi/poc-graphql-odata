@@ -14,6 +14,7 @@ namespace Upwork.ProductODataApi
     using Microsoft.OData.Edm;
     using Microsoft.OpenApi.Models;
     using Product.Data;
+    using Product.Data.Repositories;
     using Product.Domain;
 
     public class Startup
@@ -56,7 +57,11 @@ namespace Upwork.ProductODataApi
             services.AddDbContext<ProductContext>(
                 options =>
                     options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+
             services.AddControllers();
+            
             services.AddOData();
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Product OData API", Version = "v1" }); });

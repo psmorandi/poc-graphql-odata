@@ -1,11 +1,12 @@
-﻿namespace Upwork.ProductGraphqlAPI.Repositories
+﻿namespace Upwork.Product.Data.Repositories
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Core.Data;
+    using Data;
+    using Domain;
     using Microsoft.EntityFrameworkCore;
-    using Product.Data;
-    using Product.Domain;
 
     public class ProductRepository : IProductRepository
     {
@@ -27,5 +28,12 @@
             this.context.Products
                 .Include(p => p.Category)
                 .Include(p => p.Color);
+
+        public void Dispose()
+        {
+            this.context?.Dispose();
+        }
+
+        public IUnitOfWork UnitOfWork => this.context;
     }
 }

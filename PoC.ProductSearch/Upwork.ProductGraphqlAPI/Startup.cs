@@ -1,6 +1,5 @@
 namespace Upwork.ProductGraphqlAPI
 {
-    using AutoMapper;
     using HotChocolate;
     using HotChocolate.AspNetCore;
     using Microsoft.AspNetCore.Builder;
@@ -10,8 +9,8 @@ namespace Upwork.ProductGraphqlAPI
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Product.Data;
+    using Product.Data.Repositories;
     using Product.Domain;
-    using Repositories;
     using Upwork.ProductGraphqlAPI.Queries;
 
     public class Startup
@@ -38,8 +37,6 @@ namespace Upwork.ProductGraphqlAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IProductRepository, ProductRepository>();
-
-            services.AddAutoMapper(this.GetType().Assembly);
 
             services.AddDbContext<ProductContext>(
                 options =>
