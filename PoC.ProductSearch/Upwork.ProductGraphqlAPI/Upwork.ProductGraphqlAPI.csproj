@@ -6,8 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Automapper" Version="10.0.0" />
-    <PackageReference Include="automapper.extensions.microsoft.dependencyinjection" Version="8.0.1" />
     <PackageReference Include="HotChocolate" Version="10.5.2" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="10.5.2" />
     <PackageReference Include="HotChocolate.Types.Filters" Version="10.5.2" />
