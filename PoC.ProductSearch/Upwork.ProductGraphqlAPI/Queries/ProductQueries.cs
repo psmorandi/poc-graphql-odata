@@ -1,10 +1,11 @@
 ﻿namespace Upwork.ProductGraphqlAPI.Queries
 {
-    using System.Collections.Generic;
+    using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using HotChocolate.Types;
     using HotChocolate.Types.Relay;
-    using Models;
+    using Product.Domain;
     using Repositories;
 
     [ExtendObjectType(Name = "Query")]
@@ -20,9 +21,9 @@
         [UsePaging]
         [UseFiltering]
         [UseSorting]
-        public IEnumerable<Product> GetProducts() => this.productRepository.GetProducts();
+        public IQueryable<Product> GetProducts() => this.productRepository.GetProducts();
 
-        public async Task<Product> GetProduct(string id) => await this.productRepository.GetProductById(id);
+        public async Task<Product> GetProduct(Guid id) => await this.productRepository.GetProductById(id);
 
     }
 }

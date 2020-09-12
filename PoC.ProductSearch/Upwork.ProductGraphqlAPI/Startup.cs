@@ -9,8 +9,8 @@ namespace Upwork.ProductGraphqlAPI
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using Models;
     using Product.Data;
+    using Product.Domain;
     using Repositories;
     using Upwork.ProductGraphqlAPI.Queries;
 

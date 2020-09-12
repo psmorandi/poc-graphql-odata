@@ -1,13 +1,14 @@
 ﻿namespace Upwork.ProductGraphqlAPI.Repositories
 {
-    using System.Collections.Generic;
+    using System;
+    using System.Linq;
     using System.Threading.Tasks;
-    using Models;
+    using Product.Domain;
 
     public interface IProductRepository
     {
-        IEnumerable<Product> GetProducts();
+        Task<Product> GetProductById(Guid id);
 
-        Task<Product> GetProductById(string id);
+        IQueryable<Product> GetProducts();
     }
 }
