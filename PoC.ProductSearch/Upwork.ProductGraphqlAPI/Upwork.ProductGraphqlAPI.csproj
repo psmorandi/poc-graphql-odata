@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>278efd06-93e0-44b5-b907-9e0f284805a2</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Automapper" Version="10.0.0" />
+    <PackageReference Include="automapper.extensions.microsoft.dependencyinjection" Version="8.0.1" />
+    <PackageReference Include="HotChocolate" Version="10.5.2" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="10.5.2" />
+    <PackageReference Include="HotChocolate.Types.Filters" Version="10.5.2" />
+    <PackageReference Include="HotChocolate.Types.Sorting" Version="10.5.2" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Upwork.Product.Data\Upwork.Product.Data.csproj" />
+    <ProjectReference Include="..\Upwork.Product.Domain\Upwork.Product.Domain.csproj" />
+  </ItemGroup>
+
+
+</Project>
