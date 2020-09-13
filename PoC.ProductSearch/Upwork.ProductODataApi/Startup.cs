@@ -13,6 +13,7 @@ namespace Upwork.ProductODataApi
     using Microsoft.Net.Http.Headers;
     using Microsoft.OData.Edm;
     using Microsoft.OpenApi.Models;
+    using Newtonsoft.Json;
     using Product.Data;
     using Product.Data.Repositories;
     using Product.Domain;
@@ -61,26 +62,29 @@ namespace Upwork.ProductODataApi
             services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddControllers();
-            
+
             services.AddOData();
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Product OData API", Version = "v1" }); });
 
             services.AddMvcCore(
-                options =>
-                {
-                    var outputFormatters =
-                        options.OutputFormatters.OfType<ODataOutputFormatter>()
-                            .Where(formatter => formatter.SupportedMediaTypes.Count == 0);
+                    options =>
+                    {
+                        options.EnableEndpointRouting = false;
 
-                    foreach (var outputFormatter in outputFormatters) outputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/odata"));
-                });
+                        var outputFormatters =
+                            options.OutputFormatters.OfType<ODataOutputFormatter>()
+                                .Where(formatter => formatter.SupportedMediaTypes.Count == 0);
+
+                        foreach (var outputFormatter in outputFormatters) outputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/odata"));
+                    })
+                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
         }
 
         private static IEdmModel GetEdmModel()
         {
             var builder = new ODataConventionModelBuilder();
-            builder.EntitySet<Product>("Product");
+            builder.EntitySet<Product>("Products");
             return builder.GetEdmModel();
         }
     }
