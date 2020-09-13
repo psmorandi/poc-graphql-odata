@@ -19,6 +19,6 @@
 
         [HttpGet]
         [EnableQuery]
-        public IEnumerable<Product> GetProducts() => this.productRepository.GetProducts();
+        public IEnumerable<Product> Get() => this.productRepository.GetProducts();
     }
 }
