@@ -19,13 +19,15 @@
 
         public async Task<Product> GetProductById(Guid id) =>
             await this.context.Products
-                    .Include(p => p.Category)
-                    .Include(p => p.Color)
-                    .Where(p => p.Id == id)
-                    .SingleOrDefaultAsync();
+                .AsNoTracking()
+                .Include(p => p.Category)
+                .Include(p => p.Color)
+                .Where(p => p.Id == id)
+                .SingleOrDefaultAsync();
 
         public IQueryable<Product> GetProducts() => 
             this.context.Products
+                .AsNoTracking()
                 .Include(p => p.Category)
                 .Include(p => p.Color);
 
